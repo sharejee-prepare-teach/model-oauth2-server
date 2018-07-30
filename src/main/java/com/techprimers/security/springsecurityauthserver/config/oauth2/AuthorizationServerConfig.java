@@ -26,9 +26,9 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
         /*security.tokenKeyAccess("permitAll()")
                 .checkTokenAccess("isAuthenticated()");*/
-        security.tokenKeyAccess("permitAll()")
-                .checkTokenAccess("isAuthenticated()");
-       /* oauthServer.checkTokenAccess("isAuthenticated()");*/
+        /*security.tokenKeyAccess("permitAll()")
+                .checkTokenAccess("isAuthenticated()");*/
+        security.checkTokenAccess("isAuthenticated()");
     }
 
 
@@ -39,6 +39,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .withClient("ClientId")
                 .secret("secret")
                 .authorizedGrantTypes("authorization_code")
+                .authorities("ROLE_USER","ROLE_CLIENT","ROLE_TRUSTED_CLIENT","ROLE_ADMIN").scopes("read","write","trust")
+                .accessTokenValiditySeconds(5000).refreshTokenValiditySeconds(1000)
                 .scopes("user_info")
                 .autoApprove(true);
     }

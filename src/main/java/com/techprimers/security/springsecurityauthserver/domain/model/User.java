@@ -25,7 +25,7 @@ public class User implements UserDetails {
     private Long id;
     private String username;
     private String password;
-    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     private List<Role> roles;
 
     @Override
